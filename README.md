@@ -2,11 +2,11 @@
 
 A comprehensive JavaFX-based healthcare management system for managing residents, staff, and bed assignments in a care home facility.
 
-## 📋 Overview
+## Overview
 
 This system is designed to manage high-care patients in a care home with two wards, each containing multiple rooms with varying bed capacities. The system provides a visual interface for mapping patients to beds, managing staff, and tracking medication administration.
 
-## 🏥 System Architecture
+## System Architecture
 
 ### Ward Structure
 - **Ward 1**: 6 rooms with 1-4 beds per room
@@ -20,7 +20,7 @@ This system is designed to manage high-care patients in a care home with two war
 - **Medication Tracking**: Prescription management and administration logging
 - **Role-Based Access**: Different permissions for managers, doctors, and nurses
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Frontend**: JavaFX 21
 - **Backend**: Java 17
@@ -29,15 +29,21 @@ This system is designed to manage high-care patients in a care home with two war
 - **Containerization**: Docker & Docker Compose
 - **Architecture**: MVC (Model-View-Controller)
 
-## 📦 Prerequisites
+## Prerequisites
 
 - Java 17 or higher
 - Maven 3.6+
 - Docker & Docker Compose
 
-## 🚀 Quick Start
+## Quick Start
 
-### 1. Start the Database
+### 1. Clone Repository
+```bash
+git clone https://github.com/Pushkar1912/healthcare-javafx-assignment.git
+cd healthcare-javafx-assignment
+```
+
+### 2. Start the Database
 ```bash
 docker-compose up -d
 ```
@@ -46,18 +52,18 @@ This will start:
 - phpMyAdmin on port 8080
 - Wait for approx 45 sec to getting containers up and running.
 
-### 2. Verify the docker containers status
+### 3.. Verify the docker containers status
 ```bash
 docker ps
 ```
 
-### 3. Build and Run the Application
+### 4.. Build and Run the Application
 ```bash
 mvn clean compile
 mvn javafx:run
 ```
 
-## 🗄️ Database Schema
+## Database Schema
 
 The system uses an improved database schema with the following key tables:
 
@@ -74,7 +80,7 @@ The system uses an improved database schema with the following key tables:
 - **Isolation Support**: Special beds for isolation requirements
 - **Medical Conditions**: Track resident medical needs
 
-## 👥 User Roles & Permissions
+## User Roles & Permissions
 
 ### Manager
 - Add/modify staff members
@@ -92,7 +98,7 @@ The system uses an improved database schema with the following key tables:
 - Move residents between beds
 - Update medication administration records
 
-## 🎯 Key Functionality
+## Key Functionality
 
 ### Resident Management
 - **Admission**: Add new residents with medical conditions
@@ -110,7 +116,7 @@ The system uses an improved database schema with the following key tables:
 - **Smart Allocation**: Automatic bed assignment based on requirements
 - **Type Management**: Different bed types for different needs
 
-## 🧪 Testing
+## Testing
 
 The system includes comprehensive testing:
 - **Unit Tests**: JUnit tests for business logic
@@ -122,7 +128,7 @@ Run tests with:
 mvn test
 ```
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -139,7 +145,7 @@ src/
     └── init/                   # Database Initialization Scripts
 ```
 
-## 🔧 Configuration
+## Configuration
 
 ### Database Configuration
 - **Host**: localhost:3306
@@ -152,7 +158,7 @@ src/
 - **Ward Structure**: 2 wards, 6 rooms each
 - **Bed Types**: Standard, Electric, Special
 
-## 🚨 Business Rules
+## Rules
 
 ### Bed Assignment Rules
 - Gender-specific rooms when required
@@ -170,7 +176,7 @@ src/
 - Only nurses can administer medications
 - All actions are logged with timestamps
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -187,7 +193,7 @@ src/
    - Stop other services using ports 3306 or 8080
    - Modify docker-compose.yml if needed
 
-## 📈 Future Enhancements
+## Future Enhancements
 
 - **Reporting System**: Generate reports for management
 - **Mobile Interface**: Mobile app for nurses
