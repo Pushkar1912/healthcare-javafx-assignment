@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.components.NurseShiftScheduleController" spacing="20" style="-fx-padding: 20;">
+   <children>
+      <!-- Header -->
+      <Label text="📅 Shift Schedule" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      
+      <!-- Statistics Cards -->
+      <GridPane hgap="20" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="100" />
+         </rowConstraints>
+         <children>
+            <!-- Total Shifts Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F4FD; -fx-padding: 15; -fx-border-color: #2E86AB; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="0">
+               <children>
+                  <Label text="📅" style="-fx-font-size: 24px;" />
+                  <Label fx:id="totalShiftsLabel" text="0" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Total Shifts" textFill="#2E86AB" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- This Week Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F5E8; -fx-padding: 15; -fx-border-color: #2ECC71; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="📊" style="-fx-font-size: 24px;" />
+                  <Label fx:id="thisWeekShiftsLabel" text="0" textFill="#2ECC71" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="This Week" textFill="#2ECC71" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- Next Week Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #FDF2E8; -fx-padding: 15; -fx-border-color: #F18F01; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="2">
+               <children>
+                  <Label text="⏭️" style="-fx-font-size: 24px;" />
+                  <Label fx:id="nextWeekShiftsLabel" text="0" textFill="#F18F01" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Next Week" textFill="#F18F01" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- Completed Shifts Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #F3E8FD; -fx-padding: 15; -fx-border-color: #9B59B6; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="3">
+               <children>
+                  <Label text="✅" style="-fx-font-size: 24px;" />
+                  <Label fx:id="completedShiftsLabel" text="0" textFill="#9B59B6" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Completed" textFill="#9B59B6" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      
+      <!-- Filter and Action Controls -->
+      <HBox spacing="20" alignment="CENTER_LEFT">
+         <children>
+            <Label text="Week:" textFill="#2E86AB" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+            <ComboBox fx:id="weekFilterComboBox" maxWidth="120" style="-fx-font-size: 12px;" />
+            
+            <Label text="Status:" textFill="#2E86AB" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+            <ComboBox fx:id="statusFilterComboBox" maxWidth="120" style="-fx-font-size: 12px;" />
+            
+            <Button fx:id="refreshButton" text="🔄 Refresh" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+         </children>
+      </HBox>
+      
+      <!-- Quick View Buttons -->
+      <HBox spacing="15" alignment="CENTER_LEFT">
+         <children>
+            <Button fx:id="viewThisWeekButton" text="📊 This Week" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+            
+            <Button fx:id="viewNextWeekButton" text="⏭️ Next Week" style="-fx-background-color: #F18F01; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+            
+            <Button fx:id="viewAllButton" text="📋 All Shifts" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+         </children>
+      </HBox>
+      
+      <!-- Shifts Table -->
+      <VBox spacing="10">
+         <children>
+            <Label text="My Shift Schedule" textFill="#2E86AB" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            
+            <TableView fx:id="shiftsTable" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;" maxHeight="300">
+               <columns>
+                  <TableColumn fx:id="dateColumn" text="Date" minWidth="120" />
+                  <TableColumn fx:id="shiftTypeColumn" text="Shift Type" minWidth="120" />
+                  <TableColumn fx:id="startTimeColumn" text="Start Time" minWidth="100" />
+                  <TableColumn fx:id="endTimeColumn" text="End Time" minWidth="100" />
+                  <TableColumn fx:id="wardColumn" text="Ward" minWidth="80" />
+                  <TableColumn fx:id="statusColumn" text="Status" minWidth="100" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</VBox>

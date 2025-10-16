@@ -1,0 +1,68 @@
+# Compiled class files
+*.class
+target/
+*.jar
+*.war
+*.ear
+
+# IDE Settings
+.idea/
+.vscode/
+*.iml
+*.iws
+*.ipr
+.classpath
+.project
+.settings/
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+.flattened-pom.xml
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+healthcare_data.ser
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*~
+
+# Package Files
+*.7z
+*.dmg
+*.gz
+*.iso
+*.rar
+*.tar
+*.zip
+
+# Node modules (if any)
+node_modules/
+
+# Build files
+build/
+dist/
+out/
+
+# Test reports
+surefire-reports/
+test-output/
+
+# Docker volumes data (don't upload database data)
+mysql_data/
+
+# Personal notes (if any)
+notes.txt
+TODO.txt

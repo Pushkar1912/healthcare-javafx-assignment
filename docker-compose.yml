@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: healthcare-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: healthcare_db
+      MYSQL_USER: healthcare_user
+      MYSQL_PASSWORD: healthcare_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./database/init/improved_schema.sql:/docker-entrypoint-initdb.d/01-improved-schema.sql
+    command: --default-authentication-plugin=mysql_native_password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: healthcare-phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: healthcare_user
+      PMA_PASSWORD: healthcare_password
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+

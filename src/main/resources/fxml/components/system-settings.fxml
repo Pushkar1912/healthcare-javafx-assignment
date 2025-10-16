@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.components.SystemSettingsController"
+      spacing="20.0" style="-fx-background-color: #f4f7f6; -fx-padding: 20;">
+    <children>
+        <!-- Header -->
+        <HBox alignment="CENTER_LEFT" spacing="20.0">
+            <children>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="System Settings" />
+                <Region HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+
+        <!-- Profile Management Card -->
+        <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+            <children>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Profile Management" />
+                
+                <GridPane hgap="15.0" vgap="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="120.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                    <children>
+                        <!-- Current User Info -->
+                        <Label text="Current User:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <Label fx:id="currentUserLabel" text="Loading..." GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-text-fill: #333;" />
+                        
+                        <!-- Username (Read-only) -->
+                        <Label text="Username:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <TextField fx:id="usernameField" GridPane.columnIndex="1" GridPane.rowIndex="1" editable="false" style="-fx-background-color: #f5f5f5;" />
+                        
+                        <!-- First Name -->
+                        <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Enter first name" />
+                        
+                        <!-- Last Name -->
+                        <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="3" promptText="Enter last name" />
+                        
+                        <!-- Email -->
+                        <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="4" promptText="Enter email address" />
+                        
+                        <!-- Phone -->
+                        <Label text="Phone:" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <TextField fx:id="phoneField" GridPane.columnIndex="1" GridPane.rowIndex="5" promptText="Enter phone number" />
+                    </children>
+                </GridPane>
+                
+                <!-- Action Buttons -->
+                <HBox alignment="CENTER" spacing="15.0" style="-fx-padding: 10 0 0 0;">
+                    <children>
+                        <Button fx:id="updateProfileButton" onAction="#updateProfile" 
+                                style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                                text="Update Profile" />
+                        <Button fx:id="cancelProfileButton" onAction="#cancelProfile" 
+                                style="-fx-background-color: #E67E22; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                                text="Cancel" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+
+        <!-- Password Change Card -->
+        <VBox spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+            <children>
+                <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2C3E50;" text="Change Password" />
+                
+                <GridPane hgap="15.0" vgap="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="150.0" />
+                        <ColumnConstraints hgrow="ALWAYS" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                    <children>
+                        <!-- Current Password -->
+                        <Label text="Current Password:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <PasswordField fx:id="currentPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Enter current password" />
+                        
+                        <!-- New Password -->
+                        <Label text="New Password:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <PasswordField fx:id="newPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="1" promptText="Enter new password" />
+                        
+                        <!-- Confirm Password -->
+                        <Label text="Confirm Password:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold; -fx-text-fill: #555;" />
+                        <PasswordField fx:id="confirmPasswordField" GridPane.columnIndex="1" GridPane.rowIndex="2" promptText="Confirm new password" />
+                    </children>
+                </GridPane>
+                
+                <!-- Change Password Button -->
+                <HBox alignment="CENTER" style="-fx-padding: 10 0 0 0;">
+                    <children>
+                        <Button fx:id="changePasswordButton" onAction="#changePassword" 
+                                style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                                text="Change Password" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</VBox>

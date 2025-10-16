@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.components.BedTransferController" spacing="20" style="-fx-padding: 20;">
+   <children>
+      <!-- Header -->
+      <Label text="🛏️ Bed Transfer Management" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      
+      <!-- Statistics Cards -->
+      <GridPane hgap="20" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="100" />
+         </rowConstraints>
+         <children>
+            <!-- Transfers Today Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F4FD; -fx-padding: 15; -fx-border-color: #2E86AB; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="0">
+               <children>
+                  <Label text="📅" style="-fx-font-size: 24px;" />
+                  <Label fx:id="transfersTodayLabel" text="0" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Transfers Today" textFill="#2E86AB" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- Transfers This Week Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F5E8; -fx-padding: 15; -fx-border-color: #2ECC71; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="📊" style="-fx-font-size: 24px;" />
+                  <Label fx:id="transfersThisWeekLabel" text="0" textFill="#2ECC71" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="This Week" textFill="#2ECC71" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- Pending Transfers Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #FDF2E8; -fx-padding: 15; -fx-border-color: #F18F01; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="2">
+               <children>
+                  <Label text="⏳" style="-fx-font-size: 24px;" />
+                  <Label fx:id="pendingTransfersLabel" text="0" textFill="#F18F01" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Pending" textFill="#F18F01" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      
+      <!-- Transfer Form -->
+      <VBox spacing="15" style="-fx-background-color: #F8F9FA; -fx-padding: 20; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;">
+         <children>
+            <Label text="Transfer Resident to New Bed" textFill="#2E86AB" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            
+            <GridPane hgap="20" vgap="15">
+               <columnConstraints>
+                  <ColumnConstraints minWidth="120" />
+                  <ColumnConstraints minWidth="200" />
+                  <ColumnConstraints minWidth="120" />
+                  <ColumnConstraints minWidth="200" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="30" />
+                  <RowConstraints minHeight="30" />
+                  <RowConstraints minHeight="30" />
+                  <RowConstraints minHeight="80" />
+               </rowConstraints>
+               <children>
+                  <!-- Resident Selection -->
+                  <Label text="Select Resident:" textFill="#2E86AB" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+                  <ComboBox fx:id="residentComboBox" promptText="Choose resident..." maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-size: 12px;" />
+                  
+                  <!-- From Bed (Current) -->
+                  <Label text="From Bed:" textFill="#2E86AB" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+                  <TextField fx:id="fromBedTextField" promptText="No bed assigned" maxWidth="200" disable="true" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-size: 12px;" />
+                  
+                  <!-- To Bed Selection -->
+                  <Label text="To Bed:" textFill="#2E86AB" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+                  <ComboBox fx:id="toBedComboBox" promptText="Choose destination bed..." maxWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-size: 12px;" />
+                  
+                  <!-- Reason -->
+                  <Label text="Reason:" textFill="#2E86AB" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+                  <TextArea fx:id="reasonTextArea" promptText="Enter reason for transfer..." maxWidth="200" maxHeight="60" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="2" style="-fx-font-size: 12px;" />
+               </children>
+            </GridPane>
+            
+            <!-- Action Buttons -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+               <children>
+                  <Button fx:id="refreshButton" text="🔄 Refresh" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+                  
+                  <Button fx:id="validateButton" text="✅ Validate Transfer" style="-fx-background-color: #F18F01; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+                  
+                  <Button fx:id="transferButton" text="🛏️ Transfer Resident" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" disable="true" />
+               </children>
+            </HBox>
+            
+            <!-- Validation Message -->
+            <Label fx:id="validationLabel" text="" textFill="#E74C3C" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+         </children>
+      </VBox>
+      
+      <!-- Transfer History -->
+      <VBox spacing="10">
+         <children>
+            <Label text="Recent Transfer History" textFill="#2E86AB" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            
+            <TableView fx:id="transferHistoryTable" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;" maxHeight="250">
+               <columns>
+                  <TableColumn fx:id="residentColumn" text="Resident" minWidth="120" />
+                  <TableColumn fx:id="fromBedColumn" text="From Bed" minWidth="120" />
+                  <TableColumn fx:id="toBedColumn" text="To Bed" minWidth="120" />
+                  <TableColumn fx:id="nurseColumn" text="Nurse" minWidth="120" />
+                  <TableColumn fx:id="timeColumn" text="Time" minWidth="80" />
+                  <TableColumn fx:id="reasonColumn" text="Reason" minWidth="200" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</VBox>

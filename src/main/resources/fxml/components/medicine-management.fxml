@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="25" xmlns="http://javafx.com/javafx/11.0.1" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.healthcare.controller.components.MedicineManagementController"
+      style="-fx-padding: 25; -fx-background-color: #ffffff;">
+   
+   <children>
+      <!-- Title -->
+      <Label text="💊 Medicine Management" textFill="#2E86AB" 
+             style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+      <!-- Medicine Count Cards -->
+      <GridPane hgap="20" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints minWidth="200" hgrow="ALWAYS" />
+            <ColumnConstraints minWidth="200" hgrow="ALWAYS" />
+            <ColumnConstraints minWidth="200" hgrow="ALWAYS" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="120" />
+         </rowConstraints>
+         <children>
+            <!-- Total Medicines Card -->
+            <VBox alignment="CENTER" spacing="10" 
+                  style="-fx-background-color: #E8F4FD; -fx-padding: 20; 
+                         -fx-border-color: #2E86AB; -fx-border-width: 1; 
+                         -fx-border-radius: 8; -fx-background-radius: 8;" 
+                  GridPane.columnIndex="0">
+               <children>
+                  <Label text="💊" style="-fx-font-size: 32px;" />
+                  <Label fx:id="totalMedicinesLabel" text="0" textFill="#2E86AB" 
+                         style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                  <Label text="Total Medicines" textFill="#2E86AB" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+               </children>
+            </VBox>
+            
+            <!-- Active Medicines Card -->
+            <VBox alignment="CENTER" spacing="10" 
+                  style="-fx-background-color: #E8F5E8; -fx-padding: 20; 
+                         -fx-border-color: #2ECC71; -fx-border-width: 1; 
+                         -fx-border-radius: 8; -fx-background-radius: 8;" 
+                  GridPane.columnIndex="1">
+               <children>
+                  <Label text="✅" style="-fx-font-size: 32px;" />
+                  <Label fx:id="activeMedicinesLabel" text="0" textFill="#2ECC71" 
+                         style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                  <Label text="Active Medicines" textFill="#2ECC71" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+               </children>
+            </VBox>
+            
+            <!-- Categories Card -->
+            <VBox alignment="CENTER" spacing="10" 
+                  style="-fx-background-color: #FDF2E8; -fx-padding: 20; 
+                         -fx-border-color: #F18F01; -fx-border-width: 1; 
+                         -fx-border-radius: 8; -fx-background-radius: 8;" 
+                  GridPane.columnIndex="2">
+               <children>
+                  <Label text="📂" style="-fx-font-size: 32px;" />
+                  <Label fx:id="categoriesLabel" text="0" textFill="#F18F01" 
+                         style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                  <Label text="Categories" textFill="#F18F01" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+
+      <!-- Quick Actions -->
+      <VBox spacing="15">
+         <children>
+            <Label text="Quick Actions" textFill="#2E86AB" 
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            
+            <HBox spacing="15" alignment="CENTER_LEFT">
+               <children>
+                  <Button fx:id="addMedicineButton" text="➕ Add Medicine" 
+                          style="-fx-background-color: #2ECC71; -fx-text-fill: white; 
+                                 -fx-background-radius: 8; -fx-padding: 12 24; 
+                                 -fx-font-weight: bold; -fx-font-size: 14px;" 
+                          onAction="#showAddMedicineForm" />
+                  
+                  <Button fx:id="refreshMedicinesButton" text="🔄 Refresh List" 
+                          style="-fx-background-color: #3498DB; -fx-text-fill: white; 
+                                 -fx-background-radius: 8; -fx-padding: 12 24; 
+                                 -fx-font-weight: bold; -fx-font-size: 14px;" 
+                          onAction="#refreshMedicinesList" />
+                  
+                  <Button fx:id="viewCategoriesButton" text="📂 View Categories" 
+                          style="-fx-background-color: #9B59B6; -fx-text-fill: white; 
+                                 -fx-background-radius: 8; -fx-padding: 12 24; 
+                                 -fx-font-weight: bold; -fx-font-size: 14px;" 
+                          onAction="#showCategoriesView" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      
+      <!-- Medicines Section -->
+      <VBox spacing="15">
+         <children>
+            <!-- Header with Search and Filter -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+               <children>
+                  <Label text="💊 Available Medicines" textFill="#34495E" 
+                         style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                  
+                  <Region HBox.hgrow="ALWAYS" />
+                  
+                  <ComboBox fx:id="categoryFilterComboBox" promptText="Filter by category..." 
+                            prefWidth="150" />
+                  
+                  <ComboBox fx:id="classificationFilterComboBox" promptText="Filter by classification..." 
+                            prefWidth="150" />
+                  
+                  <TextField fx:id="searchField" promptText="Search medicines..." 
+                             style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                    -fx-border-color: #DEE2E6; -fx-border-width: 1; 
+                                    -fx-padding: 8 12;" 
+                             prefWidth="250" />
+               </children>
+            </HBox>
+            
+            <!-- Medicines Table -->
+            <TableView fx:id="medicinesTable" prefHeight="400" VBox.vgrow="ALWAYS"
+                       style="-fx-border-color: #dfe6e9; -fx-border-width: 1; 
+                              -fx-background-radius: 8; -fx-border-radius: 8;">
+               <columns>
+                  <TableColumn fx:id="nameColumn" text="Medicine Name" />
+                  <TableColumn fx:id="categoryColumn" text="Category" />
+                  <TableColumn fx:id="classificationColumn" text="Classification" />
+                  <TableColumn fx:id="dosageUnitColumn" text="Dosage Unit" />
+                  <TableColumn fx:id="descriptionColumn" text="Description" />
+                  <TableColumn fx:id="statusColumn" text="Status" />
+                  <TableColumn fx:id="actionsColumn" text="Actions" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      
+      <!-- Add Medicine Form -->
+      <VBox fx:id="medicineFormContainer" visible="false" managed="false" spacing="20" 
+            style="-fx-background-color: #F8F9FA; -fx-padding: 25; 
+                   -fx-border-color: #DEE2E6; -fx-border-width: 1; 
+                   -fx-border-radius: 10; -fx-background-radius: 10;">
+         <children>
+            <Label fx:id="formTitleLabel" text="Add New Medicine" textFill="#2E86AB" 
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            
+            <GridPane hgap="20" vgap="15">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="120" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="120" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               
+               <!-- Row 0: Name and Category -->
+               <children>
+                  <Label text="Medicine Name:" textFill="#34495E" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" 
+                         GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                  
+                  <TextField fx:id="medicineNameField" promptText="Enter medicine name..." 
+                            prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                  
+                  <Label text="Category:" textFill="#34495E" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" 
+                         GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                  
+                  <ComboBox fx:id="categoryComboBox" promptText="Select category..." 
+                            prefWidth="200" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+               </children>
+               
+               <!-- Row 1: Classification and Dosage Unit -->
+               <children>
+                  <Label text="Classification:" textFill="#34495E" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" 
+                         GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                  
+                  <ComboBox fx:id="classificationComboBox" promptText="Select classification..." 
+                            prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  
+                  <Label text="Dosage Unit:" textFill="#34495E" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" 
+                         GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  
+                  <TextField fx:id="dosageUnitField" promptText="e.g., mg, ml, tablets..." 
+                            prefWidth="200" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+               </children>
+            </GridPane>
+            
+            <!-- Description Section -->
+            <VBox spacing="10">
+               <children>
+                  <Label text="Description:" textFill="#34495E" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                  
+                  <TextArea fx:id="descriptionTextArea" promptText="Enter medicine description..." 
+                            prefHeight="80" 
+                            style="-fx-border-color: #DEE2E6; -fx-border-width: 1; 
+                                   -fx-border-radius: 6; -fx-background-radius: 6;" />
+               </children>
+            </VBox>
+            
+            <!-- Form Buttons -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+               <children>
+                  <Button fx:id="cancelMedicineButton" text="Cancel" 
+                          style="-fx-background-color: #95A5A6; -fx-text-fill: white; 
+                                 -fx-background-radius: 6; -fx-padding: 10 20;" 
+                          onAction="#cancelMedicineForm" />
+                  
+                  <Button fx:id="saveMedicineButton" text="Save Medicine" 
+                          style="-fx-background-color: #2ECC71; -fx-text-fill: white; 
+                                 -fx-background-radius: 6; -fx-padding: 10 20;" 
+                          onAction="#saveMedicine" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

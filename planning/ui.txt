@@ -1,0 +1,102 @@
+For a role-based UI in your JavaFX Resident HealthCare System, a personalized dashboard and navigation area (navbar or sidebar) for each user role greatly enhances usability and security by showing only relevant features.
+
+Nurse Dashboard Suggestions
+Current Patients List: Quick access to residents assigned or under nurse care.
+
+Medication Administration Panel:
+
+List of medications scheduled for administration by time.
+
+Buttons/forms to mark meds as administered with notes.
+
+Alerts for missed/overdue medications.
+
+Bed Transfer Request: Form to move resident to another bed (with validation).
+
+Resident Details Lookup: Search or select resident to view medical and prescription details.
+
+Shift Schedule: View assigned shifts calendar or summary.
+
+Action Log Access: View nurse-specific actions and medication logs for transparency.
+
+Navigation (Sidebar or Navbar) for Nurse:
+
+Dashboard/Home
+
+Patients/Residents
+
+Administer Medication
+
+Bed Transfers
+
+Shift Schedule
+
+Logs
+
+Doctor Dashboard Suggestions
+Current Patient List: Residents assigned for doctor consultations.
+
+Prescription Management:
+
+Create new prescriptions.
+
+View and edit existing prescriptions.
+
+Resident Medical History: Access detailed patient medical records.
+
+Shift Schedule: View consultation hours.
+
+Alerts: Notifications for pending prescriptions or updates needed.
+
+Navigation for Doctor:
+
+Dashboard/Home
+
+Patients/Residents
+
+Prescriptions
+
+Medical History
+
+Shift Schedule
+
+Manager Dashboard Suggestions
+Staff Management: Add, modify, remove staff and manage credentials.
+
+Resident Management: Admit new residents, discharge, bed assignments.
+
+Shift Management: Assign and monitor staff shifts with compliance checks.
+
+Action Logs: Comprehensive audit of all system actions (filterable by staff, date, type).
+
+Reports and Archives: Export or archive resident data and historical records.
+
+System Settings: Backup, restore, configuration options.
+
+Navigation for Manager:
+
+Dashboard/Home
+
+Staff Management
+
+Resident Management
+
+Shift Scheduling
+
+Action Logs
+
+Reports & Archives
+
+System Settings
+
+Common UI Elements Across Roles
+User Profile/Logout Button: Usually top-right corner.
+
+Consistent Sidebar or Top Navbar: Highlight current section.
+
+Responsive Layout: Hide/show menu for smaller screens if applicable.
+
+Breadcrumbs or Page Titles: To keep navigation clear.
+
+Notifications Area: For urgent alerts or messages.
+

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.components.SimplifiedMedicationController" spacing="20" style="-fx-padding: 20;">
+   <children>
+      <!-- Header -->
+      <Label text="💊 Today's Medications" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      
+      <!-- Today's Summary Cards -->
+      <GridPane hgap="20" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints minWidth="120" />
+            <ColumnConstraints minWidth="120" />
+            <ColumnConstraints minWidth="120" />
+            <ColumnConstraints minWidth="120" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="80" />
+         </rowConstraints>
+         <children>
+            <!-- Total Patients Card -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-background-color: #E8F4FD; -fx-padding: 15; -fx-border-color: #2E86AB; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="0">
+               <children>
+                  <Label text="👥" style="-fx-font-size: 20px;" />
+                  <Label fx:id="totalPatientsLabel" text="4" textFill="#2E86AB" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                  <Label text="My Patients" textFill="#2E86AB" style="-fx-font-size: 11px;" />
+               </children>
+            </VBox>
+            
+            <!-- Medications Due Card -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-background-color: #FFF3CD; -fx-padding: 15; -fx-border-color: #F18F01; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="💊" style="-fx-font-size: 20px;" />
+                  <Label fx:id="medicationsDueLabel" text="3" textFill="#F18F01" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                  <Label text="Due Today" textFill="#F18F01" style="-fx-font-size: 11px;" />
+               </children>
+            </VBox>
+            
+            <!-- Completed Card -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-background-color: #E8F5E8; -fx-padding: 15; -fx-border-color: #2ECC71; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="2">
+               <children>
+                  <Label text="✅" style="-fx-font-size: 20px;" />
+                  <Label fx:id="completedLabel" text="1" textFill="#2ECC71" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                  <Label text="Completed" textFill="#2ECC71" style="-fx-font-size: 11px;" />
+               </children>
+            </VBox>
+            
+            <!-- Overdue Card -->
+            <VBox alignment="CENTER" spacing="5" style="-fx-background-color: #F8D7DA; -fx-padding: 15; -fx-border-color: #DC3545; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="3">
+               <children>
+                  <Label text="⚠️" style="-fx-font-size: 20px;" />
+                  <Label fx:id="overdueLabel" text="0" textFill="#DC3545" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                  <Label text="Overdue" textFill="#DC3545" style="-fx-font-size: 11px;" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      
+      <!-- Quick Actions -->
+      <HBox spacing="15" alignment="CENTER_LEFT">
+         <children>
+            <Button fx:id="refreshButton" text="🔄 Refresh" style="-fx-background-color: #2E86AB; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15;" />
+            <Button fx:id="markGivenButton" text="✅ Mark as Given" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15;" />
+            <Button fx:id="markMissedButton" text="❌ Mark as Missed" style="-fx-background-color: #DC3545; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15;" />
+         </children>
+      </HBox>
+      
+      <!-- Today's Medication Schedule -->
+      <VBox spacing="10">
+         <Label text="📅 Today's Medication Schedule" textFill="#2E86AB" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+         
+         <!-- Medication List -->
+         <TableView fx:id="medicationTable" style="-fx-background-color: white; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;">
+            <columns>
+               <TableColumn fx:id="patientColumn" text="Patient" minWidth="120" />
+               <TableColumn fx:id="medicineColumn" text="Medicine" minWidth="150" />
+               <TableColumn fx:id="dosageColumn" text="Dosage" minWidth="100" />
+               <TableColumn fx:id="timeColumn" text="Time" minWidth="80" />
+               <TableColumn fx:id="statusColumn" text="Status" minWidth="100" />
+               <TableColumn fx:id="actionColumn" text="Action" minWidth="120" />
+            </columns>
+         </TableView>
+      </VBox>
+      
+      <!-- Quick Medication Form -->
+      <VBox spacing="15" style="-fx-background-color: #F8F9FA; -fx-padding: 15; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;">
+         <Label text="⚡ Quick Medication Administration" textFill="#2E86AB" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+         
+         <GridPane hgap="15" vgap="10">
+            <columnConstraints>
+               <ColumnConstraints minWidth="100" />
+               <ColumnConstraints minWidth="200" />
+               <ColumnConstraints minWidth="100" />
+               <ColumnConstraints minWidth="200" />
+            </columnConstraints>
+            <rowConstraints>
+               <RowConstraints minHeight="30" />
+               <RowConstraints minHeight="30" />
+            </rowConstraints>
+            <children>
+               <!-- Patient Selection -->
+               <Label text="Patient:" textFill="#2E86AB" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+               <ComboBox fx:id="patientComboBox" promptText="Select patient..." GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-size: 12px;" />
+               
+               <!-- Medicine Selection -->
+               <Label text="Medicine:" textFill="#2E86AB" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+               <ComboBox fx:id="medicineComboBox" promptText="Select medicine..." GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-size: 12px;" />
+               
+               <!-- Dosage -->
+               <Label text="Dosage:" textFill="#2E86AB" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+               <TextField fx:id="dosageTextField" promptText="Enter dosage..." GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-size: 12px;" />
+               
+               <!-- Notes -->
+               <Label text="Notes:" textFill="#2E86AB" GridPane.columnIndex="2" GridPane.rowIndex="1" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+               <TextField fx:id="notesTextField" promptText="Optional notes..." GridPane.columnIndex="3" GridPane.rowIndex="1" style="-fx-font-size: 12px;" />
+            </children>
+         </GridPane>
+         
+         <!-- Action Buttons -->
+         <HBox spacing="10" alignment="CENTER_LEFT">
+            <children>
+               <Button fx:id="administerButton" text="💊 Give Medication" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15;" />
+               <Button fx:id="clearButton" text="🗑️ Clear Form" style="-fx-background-color: #6C757D; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15;" />
+            </children>
+         </HBox>
+      </VBox>
+      
+      <!-- Status Messages -->
+      <VBox fx:id="statusContainer" spacing="5" visible="false">
+         <children>
+            <Label fx:id="statusLabel" textFill="#2E86AB" style="-fx-font-size: 12px;" />
+         </children>
+      </VBox>
+   </children>
+</VBox>

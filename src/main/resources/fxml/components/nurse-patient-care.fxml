@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.components.NursePatientCareController" spacing="20" style="-fx-padding: 20;">
+   <children>
+      <!-- Header -->
+      <Label text="👥 Patient Care Management" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+      
+      <!-- Statistics Cards -->
+      <GridPane hgap="20" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+            <ColumnConstraints minWidth="150" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="100" />
+         </rowConstraints>
+         <children>
+            <!-- Total Patients Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F4FD; -fx-padding: 15; -fx-border-color: #2E86AB; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="0">
+               <children>
+                  <Label text="👥" style="-fx-font-size: 24px;" />
+                  <Label fx:id="totalPatientsLabel" text="0" textFill="#2E86AB" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Total Patients" textFill="#2E86AB" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- My Patients Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F5E8; -fx-padding: 15; -fx-border-color: #2ECC71; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="1">
+               <children>
+                  <Label text="👩‍⚕️" style="-fx-font-size: 24px;" />
+                  <Label fx:id="myPatientsLabel" text="0" textFill="#2ECC71" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="My Patients" textFill="#2ECC71" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- Today's Medications Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #FDF2E8; -fx-padding: 15; -fx-border-color: #F18F01; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="2">
+               <children>
+                  <Label text="💊" style="-fx-font-size: 24px;" />
+                  <Label fx:id="todaysMedicationsLabel" text="0" textFill="#F18F01" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Today's Medications" textFill="#F18F01" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+            
+            <!-- Pending Tasks Card -->
+            <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #F3E8FD; -fx-padding: 15; -fx-border-color: #9B59B6; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="3">
+               <children>
+                  <Label text="📋" style="-fx-font-size: 24px;" />
+                  <Label fx:id="pendingTasksLabel" text="0" textFill="#9B59B6" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+                  <Label text="Pending Tasks" textFill="#9B59B6" style="-fx-font-size: 12px;" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      
+      <!-- Search and Filter Controls -->
+      <HBox spacing="20" alignment="CENTER_LEFT">
+         <children>
+            <Label text="Search:" textFill="#2E86AB" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+            <TextField fx:id="searchField" promptText="Search patients..." maxWidth="200" style="-fx-font-size: 12px;" />
+            
+            <Label text="Ward:" textFill="#2E86AB" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+            <ComboBox fx:id="wardFilterComboBox" maxWidth="120" style="-fx-font-size: 12px;" />
+            
+            <Label text="Status:" textFill="#2E86AB" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+            <ComboBox fx:id="statusFilterComboBox" maxWidth="120" style="-fx-font-size: 12px;" />
+            
+            <Button fx:id="refreshButton" text="🔄 Refresh" style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" />
+         </children>
+      </HBox>
+      
+      <!-- Action Buttons -->
+      <HBox spacing="15" alignment="CENTER_LEFT">
+         <children>
+            <Button fx:id="viewPatientDetailsButton" text="👤 View Patient Details" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" disable="true" />
+            
+            <Button fx:id="viewMedicationsButton" text="💊 View Medications" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 8 15 8 15; -fx-font-size: 12px;" disable="true" />
+         </children>
+      </HBox>
+      
+      <!-- Patients Table -->
+      <VBox spacing="10">
+         <children>
+            <Label text="Patient List" textFill="#2E86AB" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            
+            <TableView fx:id="patientsTable" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;" maxHeight="250">
+               <columns>
+                  <TableColumn fx:id="patientNameColumn" text="Patient Name" minWidth="150" />
+                  <TableColumn fx:id="bedColumn" text="Bed" minWidth="100" />
+                  <TableColumn fx:id="doctorColumn" text="Doctor" minWidth="120" />
+                  <TableColumn fx:id="conditionColumn" text="Condition" minWidth="200" />
+                  <TableColumn fx:id="admissionDateColumn" text="Admission Date" minWidth="120" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      
+      <!-- Medications Table -->
+      <VBox spacing="10">
+         <children>
+            <Label text="Today's Medications" textFill="#2E86AB" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            
+            <TableView fx:id="medicationsTable" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;" maxHeight="200">
+               <columns>
+                  <TableColumn fx:id="medPatientColumn" text="Patient" minWidth="120" />
+                  <TableColumn fx:id="medMedicineColumn" text="Medicine" minWidth="150" />
+                  <TableColumn fx:id="medDosageColumn" text="Dosage" minWidth="100" />
+                  <TableColumn fx:id="medFrequencyColumn" text="Frequency" minWidth="120" />
+                  <TableColumn fx:id="medStatusColumn" text="Status" minWidth="100" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+   </children>
+</VBox>

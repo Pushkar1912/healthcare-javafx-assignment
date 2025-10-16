@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.LoginController">
+   <center>
+      <HBox spacing="0" alignment="CENTER">
+         <children>
+            <!-- Left Half - Health Icon and App Details -->
+            <VBox alignment="CENTER" spacing="20" style="-fx-background-color: #2E86AB; -fx-padding: 40;" minWidth="400" maxWidth="400" HBox.hgrow="ALWAYS">
+               <children>
+                  <!-- Health Icon -->
+                  <Label text="🏥" style="-fx-font-size: 80px; -fx-text-fill: white;">
+                  </Label>
+                  
+                  <!-- App Title -->
+                  <Label text="Healthcare Management System" textFill="WHITE" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  
+                  <!-- App Description -->
+                  <Label text="Comprehensive care management for residents" textFill="WHITE" textAlignment="CENTER" wrapText="true">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  
+                  <!-- Features List -->
+                  <VBox spacing="8" alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="✓ Resident Management" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="✓ Prescription Tracking" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="✓ Medication Administration" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="✓ Bed Management" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        <Label text="✓ Audit &amp; Compliance" textFill="WHITE">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+            
+            <!-- Right Half - Login Form -->
+            <VBox alignment="CENTER" spacing="30" style="-fx-background-color: #FFFFFF; -fx-padding: 60;" minWidth="400" maxWidth="400" HBox.hgrow="ALWAYS">
+               <children>
+                  <!-- Login Title -->
+                  <VBox spacing="10" alignment="CENTER">
+                     <children>
+                        <Label text="Welcome Back" textFill="#2E86AB">
+                           <font>
+                              <Font name="System Bold" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label text="Please login to continue" textFill="#666666">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Login Form -->
+                  <VBox spacing="20" alignment="CENTER" maxWidth="300">
+                     <children>
+                        <!-- Username Field -->
+                        <VBox spacing="5">
+                           <children>
+                              <Label text="Username" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="usernameField" promptText="Enter your username" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 12;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Password Field -->
+                        <VBox spacing="5">
+                           <children>
+                              <Label text="Password" textFill="#333333">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="passwordField" promptText="Enter your password" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 12;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </PasswordField>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Login Button -->
+                        <Button fx:id="loginButton" text="Login" maxWidth="Infinity" style="-fx-background-color: #2E86AB; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 12;">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                        
+                        <!-- Error Message -->
+                        <Label fx:id="errorLabel" textFill="#E74C3C" visible="false" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                        </Label>
+                        
+                        <!-- Loading Indicator -->
+                        <ProgressIndicator fx:id="loadingIndicator" visible="false" />
+                     </children>
+                  </VBox>
+                  
+                  <!-- Footer -->
+                  <VBox spacing="5" alignment="CENTER">
+                     <children>
+                        <Label text="© 2024 Healthcare Management System" textFill="#999999">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                        <Label text="Version 1.0.0" textFill="#999999">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" xmlns="http://javafx.com/javafx/11.0.1" 
+      xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.healthcare.controller.components.ShiftSchedulingController"
+      style="-fx-padding: 20; -fx-background-color: #ffffff;">
+   
+   <children>
+      <!-- Title -->
+      <Label text="📅 Shift Scheduling" textFill="#2E86AB" 
+             style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+      <!-- Filter and Actions -->
+      <HBox spacing="15" alignment="CENTER_LEFT">
+         <children>
+            <Label text="Filter by Date:" textFill="#34495E" 
+                   style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            
+            <DatePicker fx:id="startDatePicker" promptText="Start Date" 
+                        style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                               -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+            
+            <Label text="to" textFill="#34495E" />
+            
+            <DatePicker fx:id="endDatePicker" promptText="End Date" 
+                        style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                               -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+            
+            <Button fx:id="filterButton" text="🔍 Filter" 
+                    style="-fx-background-color: #3498DB; -fx-text-fill: white; 
+                           -fx-background-radius: 6; -fx-padding: 8 16; 
+                           -fx-font-weight: bold;" 
+                    onAction="#filterShifts" />
+            
+            <Region HBox.hgrow="ALWAYS" />
+            
+            <Button fx:id="addShiftButton" text="➕ Add Shift" 
+                    style="-fx-background-color: #2ECC71; -fx-text-fill: white; 
+                           -fx-background-radius: 6; -fx-padding: 8 16; 
+                           -fx-font-weight: bold;" 
+                    onAction="#showAddShiftForm" />
+         </children>
+      </HBox>
+
+      <!-- Compliance Status -->
+      <HBox spacing="15" alignment="CENTER_LEFT">
+         <children>
+            <Label text="Compliance Status:" textFill="#34495E" 
+                   style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            
+            <Label fx:id="complianceStatusLabel" text="✅ All rules satisfied" textFill="#2ECC71" 
+                   style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+         </children>
+      </HBox>
+
+      <!-- Shifts Table -->
+      <VBox spacing="15" VBox.vgrow="ALWAYS">
+         <children>
+            <Label text="📋 Current Shifts" textFill="#2E86AB" 
+                   style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            
+            <TableView fx:id="shiftsTable" prefHeight="450" VBox.vgrow="ALWAYS"
+                       style="-fx-border-color: #dfe6e9; -fx-border-width: 1; 
+                              -fx-background-radius: 8; -fx-border-radius: 8;">
+               <columns>
+                  <TableColumn fx:id="staffColumn" text="Staff" />
+                  <TableColumn fx:id="dateColumn" text="Date" />
+                  <TableColumn fx:id="shiftTypeColumn" text="Shift" />
+                  <TableColumn fx:id="startTimeColumn" text="Start" />
+                  <TableColumn fx:id="endTimeColumn" text="End" />
+                  <TableColumn fx:id="wardColumn" text="Ward" />
+                  <TableColumn fx:id="statusColumn" text="Status" />
+                  <TableColumn fx:id="actionsColumn" text="Actions" />
+               </columns>
+            </TableView>
+         </children>
+      </VBox>
+      
+      <!-- Add/Edit Shift Form -->
+      <VBox fx:id="shiftFormContainer" visible="false" managed="false" spacing="20" 
+            style="-fx-background-color: #F8F9FA; -fx-padding: 20; 
+                   -fx-border-color: #DEE2E6; -fx-border-width: 1; 
+                   -fx-border-radius: 10; -fx-background-radius: 10;">
+         <children>
+            <Label fx:id="formTitleLabel" text="Add New Shift" textFill="#2E86AB" 
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+            
+            <GridPane hgap="20" vgap="15">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" minWidth="120" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+                  <ColumnConstraints hgrow="NEVER" minWidth="120" />
+                  <ColumnConstraints hgrow="ALWAYS" />
+               </columnConstraints>
+               
+               <Label text="Staff:" GridPane.columnIndex="0" GridPane.rowIndex="0" 
+                      style="-fx-font-weight: bold;" />
+               <ComboBox fx:id="staffComboBox" promptText="Select staff member" 
+                         GridPane.columnIndex="1" GridPane.rowIndex="0" 
+                         style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+               
+               <Label text="Date:" GridPane.columnIndex="2" GridPane.rowIndex="0" 
+                      style="-fx-font-weight: bold;" />
+               <DatePicker fx:id="shiftDatePicker" 
+                           GridPane.columnIndex="3" GridPane.rowIndex="0" 
+                           style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                  -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+               
+               <Label text="Shift Type:" GridPane.columnIndex="0" GridPane.rowIndex="1" 
+                      style="-fx-font-weight: bold;" />
+               <ComboBox fx:id="shiftTypeComboBox" promptText="Select shift type" 
+                         GridPane.columnIndex="1" GridPane.rowIndex="1" 
+                         style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+               
+               <Label text="Ward:" GridPane.columnIndex="2" GridPane.rowIndex="1" 
+                      style="-fx-font-weight: bold;" />
+               <ComboBox fx:id="wardComboBox" promptText="Select ward" 
+                         GridPane.columnIndex="3" GridPane.rowIndex="1" 
+                         style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+               
+               <Label text="Start Time:" GridPane.columnIndex="0" GridPane.rowIndex="2" 
+                      style="-fx-font-weight: bold;" />
+               <ComboBox fx:id="startTimeComboBox" promptText="Select start time" 
+                         GridPane.columnIndex="1" GridPane.rowIndex="2" 
+                         style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+               
+               <Label text="End Time:" GridPane.columnIndex="2" GridPane.rowIndex="2" 
+                      style="-fx-font-weight: bold;" />
+               <ComboBox fx:id="endTimeComboBox" promptText="Select end time" 
+                         GridPane.columnIndex="3" GridPane.rowIndex="2" 
+                         style="-fx-background-radius: 6; -fx-border-radius: 6; 
+                                -fx-border-color: #DEE2E6; -fx-border-width: 1;" />
+            </GridPane>
+            
+            <HBox spacing="15" alignment="CENTER_LEFT">
+               <children>
+                  <Button fx:id="saveShiftButton" text="💾 Save Shift" 
+                          style="-fx-background-color: #2ECC71; -fx-text-fill: white; 
+                                 -fx-background-radius: 8; -fx-padding: 10 20; 
+                                 -fx-font-weight: bold; -fx-font-size: 14px;" 
+                          onAction="#saveShift" />
+                  
+                  <Button fx:id="cancelShiftButton" text="❌ Cancel" 
+                          style="-fx-background-color: #E74C3C; -fx-text-fill: white; 
+                                 -fx-background-radius: 8; -fx-padding: 10 20; 
+                                 -fx-font-weight: bold; -fx-font-size: 14px;" 
+                          onAction="#cancelShiftForm" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>

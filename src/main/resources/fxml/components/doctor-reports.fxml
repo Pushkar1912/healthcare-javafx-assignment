@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.components.DoctorReportsController"
+      spacing="20.0" style="-fx-background-color: #f4f7f6; -fx-padding: 20;">
+   <children>
+      <!-- Header Section -->
+      <HBox alignment="CENTER_LEFT" spacing="20.0">
+         <children>
+            <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Doctor Reports" />
+            <Region HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      
+      <!-- Statistics Cards -->
+      <GridPane hgap="20" vgap="20">
+         <columnConstraints>
+            <ColumnConstraints minWidth="200" hgrow="ALWAYS" />
+            <ColumnConstraints minWidth="200" hgrow="ALWAYS" />
+            <ColumnConstraints minWidth="200" hgrow="ALWAYS" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="120" />
+         </rowConstraints>
+         <children>
+            <!-- Patient Summary Card -->
+            <VBox alignment="CENTER" spacing="10" 
+                  style="-fx-background-color: #E8F4FD; -fx-padding: 20; 
+                         -fx-border-color: #2E86AB; -fx-border-width: 1; 
+                         -fx-border-radius: 8; -fx-background-radius: 8;" 
+                  GridPane.columnIndex="0">
+               <children>
+                  <Label text="👥" style="-fx-font-size: 32px;" />
+                  <Label fx:id="totalPatientsLabel" text="0" textFill="#2E86AB" 
+                         style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                  <Label text="Total Patients" textFill="#2E86AB" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+               </children>
+            </VBox>
+            
+            <!-- Prescriptions Card -->
+            <VBox alignment="CENTER" spacing="10" 
+                  style="-fx-background-color: #FDF2E8; -fx-padding: 20; 
+                         -fx-border-color: #F18F01; -fx-border-width: 1; 
+                         -fx-border-radius: 8; -fx-background-radius: 8;" 
+                  GridPane.columnIndex="1">
+               <children>
+                  <Label text="💊" style="-fx-font-size: 32px;" />
+                  <Label fx:id="totalPrescriptionsLabel" text="0" textFill="#F18F01" 
+                         style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                  <Label text="Total Prescriptions" textFill="#F18F01" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+               </children>
+            </VBox>
+            
+            <!-- This Month Card -->
+            <VBox alignment="CENTER" spacing="10" 
+                  style="-fx-background-color: #E8F5E8; -fx-padding: 20; 
+                         -fx-border-color: #2ECC71; -fx-border-width: 1; 
+                         -fx-border-radius: 8; -fx-background-radius: 8;" 
+                  GridPane.columnIndex="2">
+               <children>
+                  <Label text="📅" style="-fx-font-size: 32px;" />
+                  <Label fx:id="thisMonthLabel" text="0" textFill="#2ECC71" 
+                         style="-fx-font-size: 28px; -fx-font-weight: bold;" />
+                  <Label text="This Month" textFill="#2ECC71" 
+                         style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+               </children>
+            </VBox>
+         </children>
+      </GridPane>
+      
+      <!-- Export Reports Section -->
+      <VBox spacing="15.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+         <children>
+            <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Export Reports" />
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #666;" text="Click any button below to download a CSV report with timestamp" />
+            
+            <HBox alignment="CENTER_LEFT" spacing="15.0">
+               <children>
+                  <Button fx:id="exportPatientReportButton" onAction="#exportPatientReport" 
+                          style="-fx-background-color: #3498DB; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 12 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                          text="Export Patient Report" />
+                  
+                  <Button fx:id="exportPrescriptionReportButton" onAction="#exportPrescriptionReport" 
+                          style="-fx-background-color: #27AE60; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 12 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                          text="Export Prescription Report" />
+                  
+                  <Button fx:id="exportMonthlyReportButton" onAction="#exportMonthlyReport" 
+                          style="-fx-background-color: #E67E22; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 12 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                          text="Export Monthly Report" />
+                  
+                  <Button fx:id="refreshReportsButton" onAction="#refreshReports" 
+                          style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 12 20; -fx-font-weight: bold; -fx-cursor: hand;" 
+                          text="Refresh Data" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      
+      <!-- Recent Activity Section -->
+      <VBox spacing="15.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 8; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="20.0">
+               <children>
+                  <Label style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Recent Activity" />
+                  <Region HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+            
+            <Label style="-fx-font-size: 14px; -fx-text-fill: #666;" text="View recent prescription and patient activities" />
+            
+            <!-- Activity List -->
+            <ListView fx:id="recentActivityList" VBox.vgrow="ALWAYS" style="-fx-background-color: #f8f9fa; -fx-background-radius: 5;">
+            </ListView>
+         </children>
+      </VBox>
+   </children>
+</VBox>

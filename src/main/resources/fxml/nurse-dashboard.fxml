@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.healthcare.controller.NurseDashboardController">
+   <top>
+      <!-- Header -->
+      <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: #2E86AB; -fx-padding: 15;">
+         <children>
+            <Label text="🏥 Healthcare Management System" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="welcomeLabel" text="Welcome, Nurse" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="userRoleLabel" text="Role: Nurse" textFill="WHITE">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Label>
+            <Button text="Logout" style="-fx-background-color: #E74C3C; -fx-text-fill: white; -fx-background-radius: 3;" onAction="#handleLogout">
+               <font>
+                  <Font size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </top>
+   
+   <left>
+      <!-- Navigation Sidebar -->
+      <VBox spacing="15" style="-fx-background-color: #F8F9FA; -fx-padding: 20;" minWidth="200">
+         <children>
+            <Label text="Nurse Dashboard" textFill="#2E86AB">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Separator />
+            
+            <Button fx:id="dashboardButton" text="📊 Dashboard/Home" maxWidth="Infinity" onAction="#showDashboard">
+            </Button>
+            
+            <Button fx:id="patientCareButton" text="👥 Patient Care" maxWidth="Infinity" onAction="#showPatientCare">
+            </Button>
+            
+            <Button fx:id="medicationsButton" text="💊 Medications" maxWidth="Infinity" onAction="#showMedications">
+            </Button>
+            
+            <Button fx:id="bedTransfersButton" text="🛏️ Bed Transfers" maxWidth="Infinity" onAction="#showBedTransfers">
+            </Button>
+            
+         </children>
+      </VBox>
+   </left>
+   
+   <center>
+      <!-- Main Content Area -->
+      <ScrollPane fitToWidth="true" fitToHeight="true">
+         <content>
+            <VBox fx:id="mainContentArea" spacing="20" style="-fx-padding: 30;">
+               <children>
+                  <!-- Dashboard Overview -->
+                  <VBox fx:id="dashboardContent" spacing="20">
+                     <children>
+                        <Label text="Nurse Dashboard Overview" textFill="#2E86AB">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </Label>
+                        
+                        <!-- Statistics Cards -->
+                        <GridPane hgap="20" vgap="20">
+                           <columnConstraints>
+                              <ColumnConstraints minWidth="200" />
+                              <ColumnConstraints minWidth="200" />
+                              <ColumnConstraints minWidth="200" />
+                              <ColumnConstraints minWidth="200" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="120" />
+                           </rowConstraints>
+                           <children>
+                              <!-- Total Patients Card -->
+                              <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F4FD; -fx-padding: 20; -fx-border-color: #2E86AB; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="0">
+                                 <children>
+                                    <Label text="👥" style="-fx-font-size: 30px;" />
+                                    <Label fx:id="totalResidentsLabel" text="0" textFill="#2E86AB">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Total Patients" textFill="#2E86AB">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- My Patients Card -->
+                              <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #E8F5E8; -fx-padding: 20; -fx-border-color: #2ECC71; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="1">
+                                 <children>
+                                    <Label text="👩‍⚕️" style="-fx-font-size: 30px;" />
+                                    <Label fx:id="myPatientsLabel" text="0" textFill="#2ECC71">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="My Patients" textFill="#2ECC71">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Today's Tasks Card -->
+                              <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #FDF2E8; -fx-padding: 20; -fx-border-color: #F18F01; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="2">
+                                 <children>
+                                    <Label text="📋" style="-fx-font-size: 30px;" />
+                                    <Label fx:id="todaysTasksLabel" text="0" textFill="#F18F01">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Today's Tasks" textFill="#F18F01">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              
+                              <!-- Pending Medications Card -->
+                              <VBox alignment="CENTER" spacing="10" style="-fx-background-color: #F3E8FD; -fx-padding: 20; -fx-border-color: #9B59B6; -fx-border-width: 1; -fx-border-radius: 5;" GridPane.columnIndex="3">
+                                 <children>
+                                    <Label text="💊" style="-fx-font-size: 30px;" />
+                                    <Label fx:id="pendingMedicationsLabel" text="0" textFill="#9B59B6">
+                                       <font>
+                                          <Font name="System Bold" size="24.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Pending Medications" textFill="#9B59B6">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </GridPane>
+                        
+                        <!-- Quick Actions -->
+                        <VBox spacing="15">
+                           <children>
+                              <Label text="Quick Actions" textFill="#2E86AB">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              
+                              <HBox spacing="15">
+                                 <children>
+                                    <Button text="👥 Patient Care" style="-fx-background-color: #2ECC71; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10;" onAction="#showPatientCare">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Button>
+                                    
+                                    <Button text="💊 Manage Medications" style="-fx-background-color: #9B59B6; -fx-text-fill: white; -fx-background-radius: 5; -fx-padding: 10;" onAction="#showMedications">
+                                       <font>
+                                          <Font size="12.0" />
+                                       </font>
+                                    </Button>
+                                    
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        
+                        <!-- Recent Activity -->
+                        <VBox spacing="15">
+                           <children>
+                              <Label text="Recent Activity" textFill="#2E86AB">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Label>
+                              
+                              <ListView fx:id="recentActivityList" style="-fx-background-color: #F8F9FA; -fx-border-color: #E0E0E0; -fx-border-width: 1; -fx-border-radius: 5;" maxHeight="200">
+                              </ListView>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  
+                  <!-- Patient Care Content -->
+                  <VBox fx:id="patientCareContent" visible="false" managed="false" spacing="20">
+                  </VBox>
+                  
+                  <!-- Medications Content -->
+                  <VBox fx:id="medicationsContent" visible="false" managed="false" spacing="20">
+                  </VBox>
+                  
+                  <!-- Bed Transfers Content -->
+                  <VBox fx:id="bedTransfersContent" visible="false" managed="false" spacing="20">
+                  </VBox>
+                  
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+   </center>
+</BorderPane>

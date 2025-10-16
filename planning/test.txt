@@ -1,0 +1,63 @@
+🔹 Specific areas to test
+
+Based on the requirements, here’s a concrete list:
+
+1. Staff scheduling compliance
+
+Nurses must only have one shift per day (max 8 hours).
+
+Nurses must be assigned only within the two shifts (8–4, 2–10).
+
+There must always be a doctor assigned every day.
+
+✅ Positive Test: Assign a nurse correctly → no exception.
+
+❌ Negative Test: Assign a nurse to 2 shifts in a single day → expect ComplianceException.
+
+❌ Negative Test: No doctor assigned for a day → expect ComplianceException.
+
+2. Bed allocation rules
+
+A resident can only be assigned to a vacant bed.
+
+✅ Positive Test: Assign a resident to an empty bed → succeeds.
+
+❌ Negative Test: Try to assign a resident to an already occupied bed → expect BedOccupiedException.
+
+❌ Negative Test: Assign a resident to a bed that doesn’t exist → expect InvalidBedException.
+
+3. Staff permissions
+
+Only managers can add staff.
+
+Only doctors can prescribe.
+
+Only nurses can administer medicine.
+
+✅ Positive Test: Manager adds nurse → succeeds.
+
+❌ Negative Test: Nurse tries to add another nurse → expect UnauthorizedActionException.
+
+❌ Negative Test: Nurse tries to prescribe medicine → expect UnauthorizedActionException.
+
+4. Medication administration
+
+Medicine must be administered at correct times.
+
+✅ Positive Test: Nurse administers scheduled medicine at correct time → logged successfully.
+
+❌ Negative Test: Nurse administers medicine at wrong time → expect InvalidTimeException.
+
+5. Serialization (saving & loading state)
+
+All objects (residents, staff, prescriptions, logs) must be saved & restored.
+
+✅ Positive Test: Save → restart program → load → same data restored.
+
+6. Audit logging
+
+Every action (admit, discharge, prescribe, administer, transfer) must be logged with staff ID and timestamp.
+
+✅ Positive Test: Log entry is created for each action.
+
+❌ Negative Test: If unauthorized staff performs action → action fails and is still logged as failed attempt.

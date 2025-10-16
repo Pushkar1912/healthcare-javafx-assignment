@@ -1,0 +1,32 @@
+Key Components by User Role
+Manager
+Add new residents to available beds.
+
+Add, update, or remove staff (doctors, nurses), manage user credentials, and set shift schedules.
+
+View or modify staff details, including passwords and roster assignments.
+
+Discharge residents and archive their medical and administrative details for audit compliance.
+
+System configuration and high-level administrative actions.
+
+Has access to all system modules for auditing, compliance, and data export.
+
+Doctor
+Write and attach prescriptions to residents in specific beds.
+
+View resident and medical details necessary to prescribe treatment.
+
+Cannot manage staff or assign beds, but can see high-level patient and prescription information.
+
+Nurse
+Administer medication as per doctor’s prescription.
+
+Update administered medication records (what/when was given, at what dosage, to whom).
+
+Move resident to a different bed if required, based on clinical needs.
+
+View resident details and assigned prescriptions.
+
+Cannot add new residents, edit prescriptions, or manage staff credentials.
+
