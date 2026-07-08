@@ -1,5 +1,8 @@
 version: '3.8'
 
+# NOTE: credentials below are local-only defaults for this Docker Compose stack
+# (not real secrets, not used anywhere outside your machine). Change them if you
+# expose these containers beyond localhost.
 services:
   mysql:
     image: mysql:8.0

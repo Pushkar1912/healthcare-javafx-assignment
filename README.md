@@ -1,10 +1,12 @@
 # Healthcare Management System
 
-A comprehensive JavaFX-based healthcare management system for managing residents, staff, and bed assignments in a care home facility.
+A JavaFX-based healthcare management system for managing residents, staff, and bed assignments in a care home facility. Built as an individual assignment for RMIT's COSC1295 Advanced Programming course - the brief called for a maintainable, extensible OO system demonstrating encapsulation, inheritance, polymorphism, design patterns, generics, JavaFX GUIs, unit testing, and object-relational persistence.
+
+Full docs (setup, database design, testing, and a reflective report on design decisions) are in [`docs/`](./docs).
 
 ## Overview
 
-This system is designed to manage high-care patients in a care home with two wards, each containing multiple rooms with varying bed capacities. The system provides a visual interface for mapping patients to beds, managing staff, and tracking medication administration.
+This system manages high-care patients in a care home with two wards, each containing multiple rooms with varying bed capacities. It provides a visual interface for mapping patients to beds, managing staff, and tracking medication administration, along with the audit/compliance rules the assignment spec required (shift-hour limits, role-based authorization, action logging).
 
 ## System Architecture
 
@@ -19,6 +21,13 @@ This system is designed to manage high-care patients in a care home with two war
 - **Bed Assignment**: Intelligent bed allocation based on gender and medical conditions
 - **Medication Tracking**: Prescription management and administration logging
 - **Role-Based Access**: Different permissions for managers, doctors, and nurses
+
+## Design Patterns & OOP Concepts
+
+- **MVC**: JavaFX controllers separate from model entities and service-layer business logic
+- **Interface-driven services**: `IBedManagementService`, `IResidentService`, `IStaffService` decouple business logic from implementation
+- **Custom exceptions**: `BedOccupiedException`, `ShiftComplianceException`, `StaffNotRosteredException`, `UnauthorizedActionException` enforce the assignment's business rules (no double-booking, shift-hour limits, role-based authorization) instead of failing silently
+- **Object-relational persistence**: JPA/Hibernate-backed persistence (`persistence.xml`) alongside a serialization path for saving/restoring in-memory state between runs
 
 ## Technology Stack
 
@@ -150,11 +159,13 @@ src/
 ### Database Configuration
 - **Host**: localhost:3306
 - **Database**: healthcare_db
-- **Username**: healthcare_user
-- **Password**: healthcare_password
+- **Username**: `<your-db-username>`
+- **Password**: `<your-db-password>`
+
+(Set via the `docker-compose.yml` environment variables - do not commit real credentials.)
 
 ### Application Settings
-- **Default Manager**:manager / password
+- **Default Manager**: `<manager-username>` / `<manager-password>` (seeded in the database init script - change before any real deployment)
 - **Ward Structure**: 2 wards, 6 rooms each
 - **Bed Types**: Standard, Electric, Special
 
