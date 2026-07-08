@@ -10,6 +10,7 @@ import java.sql.SQLException;
  */
 public class DBConnection {
     
+    // Local Docker Compose defaults only (see docker-compose.yml) - not a production secret.
     private static final String URL = "jdbc:mysql://localhost:3306/healthcare_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USERNAME = "healthcare_user";
     private static final String PASSWORD = "healthcare_password";
