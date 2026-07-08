@@ -20,7 +20,7 @@
         <class>com.healthcare.model.Archive</class>
         
         <properties>
-            <!-- Database Connection Properties -->
+            <!-- Database Connection Properties (local Docker Compose defaults only, not a production secret - see docker-compose.yml) -->
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/healthcare_db?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"/>
             <property name="jakarta.persistence.jdbc.user" value="healthcare_user"/>
